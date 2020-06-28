@@ -17,7 +17,7 @@
 Simple Hangouts Chat bot that responds to events and
 messages from a room.
 """
-# [START basic-bot]
+# [START bot]
 import logging
 from flask import Flask, render_template, request, json
 
@@ -67,17 +67,8 @@ def format_response(event):
 
     return {'text': text}
 
-# [END basic-bot]
+# [END bot]
 
-@app.route('/', methods=['GET'])
-def home_get():
-    """Respond to GET requests to this endpoint.
-
-    This function responds to requests with a simple HTML landing page for this
-    App Engine instance.
-    """
-
-    return render_template('home.html')
 
 if __name__ == '__main__':
     # This is used when running locally. Gunicorn is used to run the
