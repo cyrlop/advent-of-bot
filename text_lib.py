@@ -48,9 +48,11 @@ def get_about_answer():
     return answer
 
 def get_leave_answer():
+    btn_text = "\"Leave (you can always return)\""
+
     answer = "In order to leave, please:"
-    answer += "\n - *Google Chat App:* Click on the name of the chat and then \"Leave (you can always return)\""
-    answer += "\n - *GMail-Web:* Click on the 3 Dots and then again \"Leave (you can always return)\""
+    answer += f"\n - *Google Chat App:* Click on the name of the chat and then {btn_text}"
+    answer += f"\n - *GMail-Web:* Click on the 3 Dots and then again {btn_text}"
     return answer
 
 def get_why_answer():

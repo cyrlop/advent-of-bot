@@ -19,7 +19,7 @@ messages from a room.
 """
 # [START bot]
 import logging
-from flask import Flask, render_template, request, json
+from flask import Flask, request, json
 
 from text_lib import respond_to_message
 
