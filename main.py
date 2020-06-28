@@ -21,6 +21,8 @@ messages from a room.
 import logging
 from flask import Flask, render_template, request, json
 
+from text_lib import respond_to_message
+
 app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
@@ -62,8 +64,9 @@ def format_response(event):
     elif event['type'] == 'ADDED_TO_SPACE' and event['space']['type'] == 'DM':
         text = 'Thanks for adding me to a DM, %s!' % event['user']['displayName']
 
+    # Case 3: A message is sent
     elif event['type'] == 'MESSAGE':
-        text = 'Your message: "%s"' % event['message']['text']
+        text = respond_to_message(event['message']['text'])
 
     return {'text': text}
 
@@ -73,4 +76,4 @@ def format_response(event):
 if __name__ == '__main__':
     # This is used when running locally. Gunicorn is used to run the
     # application on Google App Engine. See entrypoint in app.yaml.
-    app.run(host='127.0.0.1', port=8080, debug=True)
+    app.run(host='127.0.0.1', port=5050, debug=True)
