@@ -66,7 +66,7 @@ def format_response(event):
 
     # Case 3: A message is sent
     elif event['type'] == 'MESSAGE':
-        text = respond_to_message(event['message']['text'])
+        text = respond_to_message(event['message'])
 
     return {'text': text}
 

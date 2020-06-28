@@ -3,8 +3,10 @@ Module to parse incoming text messages and choose an answer.
 """
 
 import re
-def respond_to_message(message):
+def respond_to_message(message_data):
     """Give a different response based on message received"""
+    bot_name = get_bot_name(message_data)
+    message = message_data["text"].replace("@"+bot_name, "")
     message_alnum = re.sub('[^A-Za-z0-9]+', '', message).lower()
 
     if message_alnum == "help":
@@ -23,6 +25,21 @@ def respond_to_message(message):
         answer = get_not_recognised_answer()
 
     return answer
+
+
+def get_bot_name(message_data):
+    """Get bot display name from message data"""
+    last_known_name = "Advent of Bot"
+
+    if "annotations" in message_data:
+        for annotation in message_data["annotations"]:
+            if annotation["type"] == "USER_MENTION":
+                user = annotation["userMention"]["user"]
+                if user["name"] == "users/100157644157199663626":
+                    return user["displayName"]
+
+    # Might be a direct message
+    return last_known_name
 
 
 #############################################
