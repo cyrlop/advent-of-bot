@@ -1,3 +1,6 @@
+# IDE
+.vscode
+
 *.pyc
 .DS_Store
 **/env/
